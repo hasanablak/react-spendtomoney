@@ -9,16 +9,36 @@ function App() {
 
 	const [money, setMoney] = useState(100);
 	const [basket, setBasket] = useState([]);
+	const [total, setTotal] = useState();
 
 	useEffect(() => {
-		console.log(basket);
+		var x = 0;
+		basket.forEach((item) => {
+			x += ( item.amount * (products.find(product => product.id === item.id)).price )
+		})
+		setTotal(x);
+		/*
+		const t = basket.reduce((acc, item) => {
+			return ( item.amount * (products.find(product => product.id === item.id)).price )
+		}, 0)
+
+		console.log(x);
+		console.log(t);
+		*/
 	},[basket])
 
 	return (
 		<>
-			<Header money={money} />
+			<Header total={total} money={money} />
 			{products.map(product => (
-				<Product key={product.id} basket={basket} setBasket={setBasket} product={product}/>
+				<Product
+					key={product.id}
+					basket={basket}
+					setBasket={setBasket}
+					product={product}
+					total={total}
+					money={money}
+				/>
 			))}
 			<Footer basket={basket} />
 

@@ -1,9 +1,18 @@
 import { useState } from 'react'
 
-function Header({money}) {
+function Header({total, money}) {
 	return (
 		<div>
-			Harcaman için $ {money} paranız var
+			{total > 0 && (
+				<>
+					Harcayacak $ {money-total} paranız kaldı
+				</>
+			) || (
+				<>
+					Harcaman için $ {money} paranız var
+				</>
+			)}
+			
 		</div>
 	)
 }

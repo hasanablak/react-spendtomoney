@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Product({ product, basket, setBasket }) {
+function Product({ product, basket, setBasket, total, money }) {
 	
 	const basketItem = basket.find(item => item.id === product.id);
 
@@ -43,7 +43,7 @@ function Product({ product, basket, setBasket }) {
 			<div className="actions">
 				<button disabled={!basketItem} onClick={removeBasket}>Sat</button>
 				<span className="amount">{basketItem && basketItem.amount || 0}</span>
-				<button onClick={addBasket}>Satın Al</button>
+				<button disabled={total+product.price > money } onClick={addBasket}>Satın Al</button>
 			</div>
 			<style jsx>{`
 			.product{
