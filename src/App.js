@@ -40,7 +40,7 @@ function App() {
 					money={money}
 				/>
 			))}
-			<Footer basket={basket} />
+			<Footer basket={basket} setBasket={setBasket} />
 
 		</>
 	);
