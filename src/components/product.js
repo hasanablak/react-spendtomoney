@@ -1,4 +1,9 @@
 import { useState } from "react"
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
 
 function Product({ product, basket, setBasket, total, money }) {
 	
@@ -37,24 +42,30 @@ function Product({ product, basket, setBasket, total, money }) {
 	}
 
 	return (
-		<div className="product">
-			<h6>{product.title}</h6>
-			<div className="price">${product.price}</div>
-			<div className="actions">
-				<button disabled={!basketItem} onClick={removeBasket}>Sat</button>
-				<span className="amount">{basketItem && basketItem.amount || 0}</span>
-				<button disabled={total+product.price > money } onClick={addBasket}>Satın Al</button>
-			</div>
-			<style jsx>{`
-			.product{
-				padding: 10px;
-				background: #fff;
-				border: 1px solid #ddd;
-				margin:10px;
-			}
-		 `}</style>
-		</div>
-		
+		<>
+			<Col xs={6} md={3}>
+				<Card style={{ width: '18rem' }}>
+					<Card.Img variant="top" src={product.img} />
+					<Card.Body>
+						<Card.Title>{product.title}</Card.Title>
+						<Card.Text>
+							${product.price}
+						</Card.Text>
+						<InputGroup className="mb-3">
+							<Button size="sm" disabled={!basketItem} onClick={removeBasket} variant="outline-success">Sat</Button>
+							<FormControl
+								aria-label="Example text with button addon"
+								aria-describedby="basic-addon1"
+								value={basketItem && basketItem.amount || 0}
+							/>
+							
+							<Button size="sm" disabled={total+product.price > money } onClick={addBasket} variant="outline-primary">Satın Al</Button>
+							
+  						</InputGroup>
+					</Card.Body>
+				</Card>
+			</Col>
+		</>
 	)
 }
 

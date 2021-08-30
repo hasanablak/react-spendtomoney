@@ -4,6 +4,10 @@ import Header from './components/header'
 import products from './products.json'
 import Product from './components/product'
 import Footer from './components/footer'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 function App() {
 
@@ -29,7 +33,11 @@ function App() {
 
 	return (
 		<>
-			<Header total={total} money={money} />
+			
+			<Container>
+				
+				<Header total={total} money={money} />
+				<Row>
 			{products.map(product => (
 				<Product
 					key={product.id}
@@ -40,8 +48,10 @@ function App() {
 					money={money}
 				/>
 			))}
+					</Row>
 			<Footer basket={basket} setBasket={setBasket} />
 
+			</Container>
 		</>
 	);
 }
